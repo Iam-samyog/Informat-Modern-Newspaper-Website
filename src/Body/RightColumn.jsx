@@ -76,7 +76,7 @@ const RightColumn = () => {
     <div className="mb-4 pb-5 border-b-2 border-gray-300" key={index}>
       <span className="text-bold primary-font text-gray-500">{post.category}</span>
       <span className="text-sm text-gray-500 ml-2">Posted {post.date}</span>
-      <h3 className="text-lg font-semibold mt-1 hover:text-blue-500 cursor-pointer">
+      <h3 className="text-lg font-semibold mt-1 hover:text-blue-300 cursor-pointer">
         {post.title}
       </h3>
       <p className="text-gray-700 mt-1">
