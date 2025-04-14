@@ -30,7 +30,7 @@ const Home = () => {
       <div data-aos='fade-left'>
        <Body/>
        </div>
-      <div className='mx-auto  mt-[20px] md:mt-[100px]' data-aos='fade-left'>
+      <div className='mx-auto  mt-[20px] md:mt-[100px]' data-aos='slide-right'>
         <Newsletter/>
      
       </div>
