@@ -1,12 +1,35 @@
-# React + Vite
+# 📰 Informat – Modern Newspaper Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Informat is a modern, responsive newspaper website built using **React**, **Tailwind CSS**, and **Bootstrap Icons**.  
+Designed to deliver an engaging and clean user experience, Informat showcases bold headlines, readable typography, and a layout optimized for all devices.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ⚛️ Built with **React JS**
+- 🎨 Styled using **Tailwind CSS**
+- 📱 **Fully responsive** design for all screen sizes
+- 🎯 Clean UI with **Bootstrap Icons**
+- 📰 Perfect for **digital newspapers, blogs, and media platforms**
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📂 Tech Stack
+
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [Vite](https://vitejs.dev/) (for fast and optimized development)
+
+---
+
+## 🔧 Getting Started
+
+To run this project locally:
+
+```bash
+git clone https://github.com/Iam-samyog/Informat-Modern-Newspaper-Website.git
+cd Informat-Modern-Newspaper-Website
+npm install
+npm run dev
