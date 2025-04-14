@@ -7,7 +7,9 @@ import RightColumn from './RightColumn';
 const Body = () => {
   return (
     <div className="flex min-h-screen max-w-[1350px] container mx-auto bg-white">
-      <LeftColumn />
+       
+ <LeftColumn />
+     
       <MiddleColumn />
       <RightColumn />
     </div>
