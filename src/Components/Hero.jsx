@@ -11,7 +11,7 @@ const Hero = () => {
           
           {/* Search Bar Overlay */}
           <div className="absolute left-[100px] inset-0 flex items-center">
-            <div className="container mx-auto px-6 md:px-12">
+            <div className="hidden container mx-auto md:block px-6 md:px-12">
               <div className="max-w-[650px] relative">
                 <input
                   type="text"
