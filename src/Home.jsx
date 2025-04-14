@@ -13,14 +13,14 @@ const Home = () => {
       <div className=''>
       <Hero/>
       </div>
-      <div className="my-5">
+      {/* <div className="my-5">
       <Body/>
-      </div>
-      <div className='mx-auto my-10  '>
+      </div> */}
+      <div className='mx-auto  mt-[20px] md:mt-[100px]'>
         <Newsletter/>
       </div>
     
-      <div className='mt-[150px]'>
+      <div className=''>
       <Footer/>
       </div>
     </>
