@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Chonburi&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+.primary-font{
+  font-family: "Chonburi", serif;
+}
+.secondary-font{
+  font-family: "Montserrat", sans-serif;
+}
