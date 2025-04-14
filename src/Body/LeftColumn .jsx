@@ -37,7 +37,7 @@ const LeftColumn = () => {
   };
 
   return (
-    <div className="w-full sm:w-1/3 p-4 secondary-font mt-10">
+    <div className="w-full md:w-1/5 p-4 secondary-font mt-10">
       {/* Top Categories Section */}
       <div className="mb-8 border-b border-gray-400 pb-10">
         <h2 className="text-2xl font-bold mb-4">TOP CATEGORIES</h2>
@@ -75,7 +75,7 @@ const LeftColumn = () => {
       </div>
 
       {/* Survey Section */}
-      <div className="mb-8 pb-4 border-b-2 border-gray-300">
+      <div className="mb-8 pb-4 border-b-2 border-gray-00">
         <h2 className="text-2xl font-bold mb-4">Survey</h2>
         <p className="mb-4">How often do you read news?</p>
         <div className="space-y-2">

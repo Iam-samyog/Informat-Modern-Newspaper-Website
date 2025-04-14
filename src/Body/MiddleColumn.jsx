@@ -93,7 +93,7 @@ const MiddleColumn = () => {
   }
 
   return (
-    <div className="w-full p-4 mt-6 secondary-font">
+    <div className="w-full md:w-3/5 p-4 mt-8 secondary-font ">
       {/* Categories */}
       <div className="mb-6 pt-3 px-2">
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-rounded-md">

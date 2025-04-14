@@ -62,7 +62,7 @@ const RightColumn = () => {
   ];
 
   return (
-    <div className="w-full md:w-1/3 p-4 mt-10 secondary-font">
+    <div className="w-full md:w-1/5 p-4 mt-10  secondary-font">
       <div className="mb-8 pb-5 border-b-2 border-gray-300">
         <h2 className="text-xl primary-font font-bold mb-4 pb-5 border-b-2 border-gray-300">EXPLORE</h2>
         <ul className="space-y-2">
