@@ -2,7 +2,7 @@ import React from 'react';
 
 const LeftColumn = () => {
   return (
-    <div className="w-1/4 p-4 secondary-font">
+    <div className="w-1/3 p-4 secondary-font">
       <div className="mb-8">
         <h2 className="text-2xl font-bold mb-4">TOP CATEGORIES</h2>
         <ul className="space-y-2">
