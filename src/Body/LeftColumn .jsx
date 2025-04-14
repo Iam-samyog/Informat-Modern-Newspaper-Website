@@ -1,6 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const LeftColumn = () => {
+      useEffect(() => {
+            AOS.init({
+              duration: 1000, // animation duration (in ms)
+              once: true      // animate only once
+            });
+          }, []);
   const [pollAnswer, setPollAnswer] = useState('');
 
   // Constant for Top Categories
@@ -37,7 +45,7 @@ const LeftColumn = () => {
   };
 
   return (
-    <div className="w-full md:w-1/5 p-4 secondary-font mt-10">
+    <div className="w-full md:w-1/5 p-4 secondary-font mt-10" data-aos='fade-right'>
       {/* Top Categories Section */}
       <div className="mb-8 border-b border-gray-400 pb-10">
         <h2 className="text-2xl font-bold mb-4">TOP CATEGORIES</h2>

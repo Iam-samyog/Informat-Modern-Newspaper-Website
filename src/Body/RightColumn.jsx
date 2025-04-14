@@ -1,6 +1,13 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const RightColumn = () => {
+      useEffect(() => {
+            AOS.init({
+              duration: 1000, // animation duration (in ms)
+              once: true      // animate only once
+            });
+          }, []);
   const exploreItems = ['POLITICS', 'BUSINESS', 'TECHNOLOGY', 'SCIENCE', 'Health'];
   const trendingPosts = [
     {
@@ -62,7 +69,7 @@ const RightColumn = () => {
   ];
 
   return (
-    <div className="w-full md:w-1/5 p-4 mt-10  secondary-font">
+    <div className="w-full md:w-1/5 p-4 mt-10  secondary-font"  data-aos='fade-left'>
       <div className="mb-8 pb-5 border-b-2 border-gray-300">
         <h2 className="text-xl primary-font font-bold mb-4 pb-5 border-b-2 border-gray-300">EXPLORE</h2>
         <ul className="space-y-2">

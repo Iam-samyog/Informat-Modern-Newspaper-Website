@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const MiddleColumn = () => {
+   
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('technology');
@@ -10,6 +12,7 @@ const MiddleColumn = () => {
   const [articlesPerPage] = useState(10);
   const navigate = useNavigate();
   const apiKey = '0b28488448144e3eabc2032abe3606cf';
+
 
   const categoryColors = {
     technology: 'bg-blue-100 text-blue-800',
@@ -93,7 +96,8 @@ const MiddleColumn = () => {
   }
 
   return (
-    <div className="w-full md:w-3/5 p-4 mt-8 secondary-font ">
+
+    <div className="w-full md:w-3/5 p-4 mt-8 secondary-font "  >
       {/* Categories */}
       <div className="mb-6 pt-3 px-2">
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-rounded-md">
