@@ -1,6 +1,9 @@
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Newsletter from '../Components/Newsletter';
+import Footer from '../Footer';
+import Header from '../Components/Header';
 
 const NewsDetail = () => {
   const location = useLocation();
@@ -33,6 +36,8 @@ const NewsDetail = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div className="p-6 max-w-4xl mx-auto">
       <button 
         onClick={() => navigate(-1)} 
@@ -87,6 +92,9 @@ const NewsDetail = () => {
         </svg>
       </a>
     </div>
+    <Newsletter/>
+    <Footer/>
+    </>
   );
 };
 

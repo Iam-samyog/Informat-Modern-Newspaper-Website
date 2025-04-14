@@ -5,10 +5,13 @@ const MiddleColumn = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState('technology');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [articlesPerPage] = useState(10);
   const navigate = useNavigate();
   const apiKey = '0b28488448144e3eabc2032abe3606cf';
 
-  // Category color mapping
+
   const categoryColors = {
     technology: 'bg-blue-100 text-blue-800',
     business: 'bg-green-100 text-green-800',
@@ -24,7 +27,7 @@ const MiddleColumn = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`
+          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}&page=${currentPage}&pageSize=${articlesPerPage}`
         );
         const data = await response.json();
         
@@ -35,6 +38,10 @@ const MiddleColumn = () => {
         }));
         
         setArticles(articlesWithCategory);
+        
+        // Calculate total pages based on totalResults from API
+        const total = Math.ceil((data.totalResults || 0) / articlesPerPage);
+        setTotalPages(total > 0 ? total : 1);
       } catch (error) {
         console.error('Error fetching news:', error);
       } finally {
@@ -43,7 +50,7 @@ const MiddleColumn = () => {
     };
 
     fetchNews();
-  }, [category]);
+  }, [category, currentPage, articlesPerPage]);
 
   const handleArticleClick = (article) => {
     navigate('/news', { state: { article } });
@@ -51,6 +58,53 @@ const MiddleColumn = () => {
 
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
+    setCurrentPage(1); // Reset to first page when changing category
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    // Scroll to top when changing pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Generate pagination buttons array
+  const getPaginationButtons = () => {
+    const buttons = [];
+    const maxVisibleButtons = 5;
+    
+    // Always show first page
+    buttons.push(1);
+    
+    if (totalPages <= maxVisibleButtons) {
+      // If total pages is small, show all pages
+      for (let i = 2; i <= totalPages; i++) {
+        buttons.push(i);
+      }
+    } else {
+      // Complex pagination logic for many pages
+      if (currentPage > 3) {
+        buttons.push('...');
+      }
+      
+      // Pages around current page
+      const startPage = Math.max(2, currentPage - 1);
+      const endPage = Math.min(totalPages - 1, currentPage + 1);
+      
+      for (let i = startPage; i <= endPage; i++) {
+        buttons.push(i);
+      }
+      
+      if (currentPage < totalPages - 2) {
+        buttons.push('...');
+      }
+      
+      // Always show last page if there are multiple pages
+      if (totalPages > 1) {
+        buttons.push(totalPages);
+      }
+    }
+    
+    return buttons;
   };
 
   if (loading) {
@@ -62,65 +116,148 @@ const MiddleColumn = () => {
   }
 
   return (
-    <div className="w-1/2 p-4">
-      {/* Category Selector */}
-      <div className="mb-6 flex space-x-2 overflow-x-auto pb-2">
-        {Object.keys(categoryColors).map((cat) => (
-          <button
-            key={cat}
-            onClick={() => handleCategoryChange(cat)}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-              category === cat 
-                ? `${categoryColors[cat]} ring-2 ring-offset-2 ring-opacity-50` 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
-          </button>
-        ))}
+    <div className="w-full p-4 mt-10 secondary-font">
+     
+      <div className="mb-6 pt-3 px-2"> {/* Added padding-top (pt-3) */}
+        <div className="flex space-x-2 pb-2 overflow-x-auto">
+          {Object.keys(categoryColors).map((cat) => (
+            <button
+              key={cat}
+              onClick={() => handleCategoryChange(cat)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex-shrink-0 ${
+                category === cat 
+                  ? `${categoryColors[cat]} ring-opacity-50` 
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Articles List */}
       {articles.length > 0 ? (
-        articles.map((article, index) => (
-          <div 
-            key={index} 
-            className="mb-8 border-b pb-6 hover:bg-gray-50 transition-colors rounded-lg p-4"
-          >
-            {/* Category Badge */}
-            <span className={`inline-block ${
-              categoryColors[article.category]
-            } text-xs px-2 py-1 rounded-md mb-2 font-medium`}>
-              {article.category.toUpperCase()}
-            </span>
-            
-            {/* Article Title */}
-            <h2 
-              className="text-2xl font-semibold mb-2 hover:text-blue-600 cursor-pointer transition-colors"
-              onClick={() => handleArticleClick(article)}
-            >
-              {article.title}
-            </h2>
-            
-            {/* Article Description */}
-            <p className="text-gray-700 mb-3">{article.description}</p>
-            
-            {/* Article Metadata */}
-            <div className="flex flex-wrap justify-between items-center text-sm text-gray-500 gap-2">
-              <span className="font-medium">{article.source?.name}</span>
-              <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
-              <span>By {article.author || 'Unknown'}</span>
-            </div>
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {articles.map((article, index) => (
+              <div 
+                key={index} 
+                className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                {/* Article Image */}
+                <div className="h-48 overflow-hidden">
+                  {article.urlToImage ? (
+                    <img 
+                      src={article.urlToImage} 
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform hover:scale-105"
+                      onClick={() => handleArticleClick(article)}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = '/api/placeholder/400/320';
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center text-gray-500">
+                      No image available
+                    </div>
+                  )}
+                </div>
+                
+                <div className="p-4">
+                  {/* Category Badge */}
+                  <div className="mb-2">
+                    <span className={`inline-block ${
+                      categoryColors[article.category]
+                    } text-xs px-2 py-1 rounded-md font-medium`}>
+                      {article.category.toUpperCase()}
+                    </span>
+                  </div>
+                  
+                  {/* Article Title */}
+                  <h2 
+                    className="text-xl primary-font font-normal mb-2 hover:text-orange-300 cursor-pointer transition-colors line-clamp-2"
+                    onClick={() => handleArticleClick(article)}
+                  >
+                    {article.title}
+                  </h2>
+                  
+                  {/* Article Description */}
+                  <p className="text-gray-700 mb-3 text-sm line-clamp-3">
+                    {article.description || "No description available"}
+                  </p>
+                  
+                  {/* Article Metadata */}
+                  <div className="flex flex-wrap justify-between items-center text-xs text-gray-500 mt-auto">
+                    <span className="font-medium">{article.source?.name || "Unknown Source"}</span>
+                    <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))
+
+          {/* Pagination */}
+          <div className="flex justify-center items-center mt-8">
+            <nav className="flex items-center space-x-1">
+              {/* Previous Page Button */}
+              <button
+                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-3 py-2 rounded-md ${
+                  currentPage === 1
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+                aria-label="Previous page"
+              >
+                &laquo;
+              </button>
+              
+              {/* Page Numbers */}
+              {getPaginationButtons().map((page, index) => (
+                page === '...' ? (
+                  <span key={`ellipsis-${index}`} className="px-3 py-2">...</span>
+                ) : (
+                  <button
+                    key={`page-${page}`}
+                    onClick={() => handlePageChange(page)}
+                    className={`px-3 py-2 rounded-md ${
+                      currentPage === page
+                        ? 'bg-blue-300 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              ))}
+              
+              {/* Next Page Button */}
+              <button
+                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-3 py-2 rounded-md ${
+                  currentPage === totalPages
+                    ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+                aria-label="Next page"
+              >
+                &raquo;
+              </button>
+            </nav>
+          </div>
+        </>
       ) : (
         <div className="text-center py-10">
           <p className="text-gray-500">No articles found in this category.</p>
           <button 
-            onClick={() => fetchNews()} 
+            onClick={() => setCategory('general')} 
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
           >
-            Retry
+            Try General News
           </button>
         </div>
       )}
