@@ -2,21 +2,21 @@ import React from 'react';
 
 const LeftColumn = () => {
   return (
-    <div className="w-1/4 bg-blue-100 p-4">
-      <div className="bg-blue-500 text-white text-6xl font-bold p-8 mb-4 flex items-center justify-center">
-        T
+    <div className="w-1/4 p-4 secondary-font">
+      <div className="mb-8">
+        <h2 className="text-2xl font-bold mb-4">TOP CATEGORIES</h2>
+        <ul className="space-y-2">
+          <li className="hover:text-blue-500 cursor-pointer">FOOD</li>
+          <li className="hover:text-blue-500 cursor-pointer">TRAVEL</li>
+          <li className="hover:text-blue-500 cursor-pointer">LEADERSHIP</li>
+          <li className="hover:text-blue-500 cursor-pointer">100 BEST COMPANIES</li>
+          <li className="hover:text-blue-500 cursor-pointer">GADGETS</li>
+        </ul>
       </div>
-      <div className="text-sm uppercase font-semibold mb-2">IN THIS RUBRIC:</div>
-      <ul className="space-y-2 text-sm">
-        <li className="text-blue-600 font-medium">TECHNOLOGY</li>
-        <li>MACHINE LEARNING</li>
-        <li>DATA SCIENCE</li>
-        <li>WEB & DESIGN</li>
-        <li>CAREERS</li>
-      </ul>
+      
+     
     </div>
   );
 };
 
 export default LeftColumn;
-

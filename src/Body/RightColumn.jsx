@@ -2,27 +2,47 @@ import React from 'react';
 
 const RightColumn = () => {
   return (
-    <div className="w-1/4 p-4 bg-gray-50">
+    <div className="w-1/4 p-4">
       <div className="mb-8">
-        <h3 className="text-sm font-bold uppercase mb-4">TOP CATEGORIES</h3>
-        <ul className="space-y-3 text-sm">
-          <li>TECH</li>
-          <li>FOOD</li>
-          <li>TRAVEL</li>
-          <li>LEADERSHIP</li>
-          <li>STAFF COMMENTARY</li>
-          <li>CAREERS</li>
+        <h2 className="text-2xl font-bold mb-4">EXPLORE</h2>
+        <ul className="space-y-2">
+          <li className="hover:text-blue-500 cursor-pointer">POLITICS</li>
+          <li className="hover:text-blue-500 cursor-pointer">BUSINESS</li>
+          <li className="hover:text-blue-500 cursor-pointer">TECHNOLOGY</li>
+          <li className="hover:text-blue-500 cursor-pointer">SCIENCE</li>
+          <li className="hover:text-blue-500 cursor-pointer">HEALTH</li>
         </ul>
       </div>
-
-      <div className="mb-8">
-        <h3 className="text-sm font-bold uppercase mb-4">POPULAR ON INFOHART</h3>
-      </div>
-
-      <div className="mb-6 bg-white p-3 border border-gray-200">
-        <h3 className="text-sm font-bold mb-2">Which Flavor of Data Professional Are You?</h3>
-        <p className="text-xs text-gray-500 mb-2">Given the types of teams you've joined and what you've worked on so far, which of the below is most likely to be true...</p>
-        <div className="text-blue-600 text-xs font-medium">READ MORE</div>
+      
+      <div>
+        <h2 className="text-2xl font-bold mb-4">TRENDING NOW</h2>
+        <div className="mb-4">
+          <span className="text-sm text-gray-500">TECH</span>
+          <span className="text-sm text-gray-500 ml-2">Posted July 11, 2017</span>
+          <h3 className="text-lg font-semibold mt-1 hover:text-blue-500 cursor-pointer">
+            Which Flavor of Data Professional Are You?
+          </h3>
+          <p className="text-gray-700 mt-1">
+            As software engineers, developers or architects, it is pivotal to stay current and relevant within the technologies and the domains we work...
+          </p>
+          <div className="flex justify-between mt-2">
+            <span className="text-sm text-gray-500">Autor Arthur Block</span>
+          </div>
+        </div>
+        
+        <div className="mb-4">
+          <span className="text-sm text-gray-500">ENTERTAINMENT</span>
+          <span className="text-sm text-gray-500 ml-2">Posted July 27, 2014</span>
+          <h3 className="text-lg font-semibold mt-1 hover:text-blue-500 cursor-pointer">
+            Netflix Killer?
+          </h3>
+          <p className="text-gray-700 mt-1">
+            Helped by a low $5 price and a free subscription offer, Apple TV+ could attract as many as 10 million users within its first year, according to an analyst...
+          </p>
+          <div className="flex justify-between mt-2">
+            <span className="text-sm text-gray-500">Autor Justin Hawkins</span>
+          </div>
+        </div>
       </div>
     </div>
   );
