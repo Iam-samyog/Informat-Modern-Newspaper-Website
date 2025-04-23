@@ -120,7 +120,7 @@ const MiddleColumn = () => {
       {/* Articles */}
       {articles.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-1 gap-6">
             {articles.map((article, index) => (
               <div key={index} className="border rounded-lg overflow-hidden shadow hover:shadow-md transition-shadow">
                 <div className="h-40 sm:h-48 md:h-56 overflow-hidden cursor-pointer" onClick={() => handleArticleClick(article)}>
