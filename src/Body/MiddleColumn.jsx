@@ -11,8 +11,7 @@ const MiddleColumn = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [articlesPerPage] = useState(10);
   const navigate = useNavigate();
-  const apiKey = '0b28488448144e3eabc2032abe3606cf';
-
+  const apiKey = "";
 
   const categoryColors = {
     technology: 'bg-blue-100 text-blue-800',
